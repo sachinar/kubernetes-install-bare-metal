@@ -55,7 +55,7 @@ $ systemctl enable kubelet && systemctl start kubelet
 Initializing cluster with kubeadm
 On master node
 
-$ kubeadm init — pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=172.20.0.10
+$ kubeadm init  -- pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=172.20.0.10
 
 --apiserver-advertise-address determines which IP address Kubernetes should advertise its API server on.
 You will get this when you done with Kubadm init.
@@ -63,7 +63,9 @@ Your Kubernetes master has initialized successfully!
 To start using your cluster, you need to run (as a regular user):
 
 $ mkdir -p $HOME/.kube
+
 $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 You should now deploy a pod network to the cluster.
@@ -72,12 +74,12 @@ http://kubernetes.io/docs/admin/addons/
 You can now join any number of machines by running the following on each node
 as root:
 
-$ kubeadm join — token 7ed3b7.ae447f51edc87df2 172.20.0.10:6443 — discovery-token-ca-cert-hash sha256:7b19036bd9cfc7e4e09721448e0a0467cf7fc67c982abbf36f478e0c2eec32cb
+$ kubeadm join  -- token 7ed3b7.ae447f51edc87df2 172.20.0.10:6443  -- discovery-token-ca-cert-hash sha256:7b19036bd9cfc7e4e09721448e0a0467cf7fc67c982abbf36f478e0c2eec32cb
 
 Via this token you can connect new nodes to master.
 For installing nodes you need to do all the steps as given above but only $kubeadm init not required.
 
-$ kubectl apply --filename https://git.io/weave-kube-1.6
+$ kubectl apply  --f https://git.io/weave-kube-1.6
 
 For running kube-dns POD’s
 Now you can check nodes for kubernetes cluster
@@ -85,6 +87,6 @@ Now you can check nodes for kubernetes cluster
 $ kubectl get nodes
 For checking which pods are running on kubernetes cluster
 
-$ kubectl get pods --all-namespaces -o wide
+$ kubectl get pods  --all-namespaces -o wide
 
 Kubernets cluster running..!!!!
